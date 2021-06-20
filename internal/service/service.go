@@ -9,20 +9,25 @@
  *  (& )`   (,((,((;( ))\,
  */
 
-package api
+package service
 
 import (
 	"context"
-	"fmt"
-	"github.com/gorilla/mux"
 	"github.com/zerotohero-dev/fizz-env/pkg/env"
-	"github.com/zerotohero-dev/fizz-store/internal/service"
 )
 
-func InitializeEndpoints(e env.FizzEnv, router *mux.Router) {
-	svc := service.New(e, context.Background())
+type Service interface {
+	Subscribe(authToken string, subscription data.Subscription) error
+}
 
-	fmt.Println(svc, router)
+type service struct {
+	env env.FizzEnv
+	ctx context.Context
+}
 
-	panic("Implement me!")
+func New(e env.FizzEnv, ctx context.Context) Service {
+	return &service{
+		env: e,
+		ctx: ctx,
+	}
 }
