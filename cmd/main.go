@@ -11,12 +11,19 @@
 
 package main
 
+import (
+	"github.com/gorilla/mux"
+	"github.com/zerotohero-dev/fizz-app/pkg/app"
+	"github.com/zerotohero-dev/fizz-env/pkg/env"
+	"github.com/zerotohero-dev/fizz-store/internal/api"
+)
+
 const appName = "fizz-store"
 
 func main() {
 	e := *env.New()
 
-	appEnv = e.Store
+	appEnv := e.Store
 
 	app.Configure(e, appName, appEnv.HoneybadgerApiKey, appEnv.Sanitize)
 
