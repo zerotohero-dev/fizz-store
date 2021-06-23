@@ -13,6 +13,7 @@ package service
 
 import (
 	"context"
+	"github.com/zerotohero-dev/fizz-entity/pkg/data"
 	"github.com/zerotohero-dev/fizz-env/pkg/env"
 )
 
