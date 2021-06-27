@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 #  \
 #  \\,
 #   \\\,^,.,,.                    “Zero to Hero”
@@ -7,7 +9,4 @@
 #   /;`,,/7),)) )) )\,,
 #  (& )`   (,((,((;( ))\,
 
-.idea
-/fizz-store
-.DS_Store
-.netrc
+docker build -t zerotohero-dev/fizz-store:0.0.10 .
