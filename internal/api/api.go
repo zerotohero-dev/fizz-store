@@ -22,10 +22,10 @@ import (
 	"github.com/zerotohero-dev/fizz-store/internal/transport"
 )
 
-const prefix = "/store"
-
 func InitializeEndpoints(e env.FizzEnv, router *mux.Router) {
 	svc := service.New(e, context.Background())
+
+	prefix := e.Store.PathPrefix
 
 	// Stripe callback.
 	app.RoutePrefixedPath(
