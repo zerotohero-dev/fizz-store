@@ -22,17 +22,19 @@ import (
 	"github.com/zerotohero-dev/fizz-store/internal/transport"
 )
 
+const prefix = "/store"
+
 func InitializeEndpoints(e env.FizzEnv, router *mux.Router) {
 	svc := service.New(e, context.Background())
 
 	// Stripe callback.
-	app.Route(
-		router, http.NewServer(
+	app.RoutePrefixedPath(
+		http.NewServer(
 			endpoint.MakeSubscribeEndpoint(svc),
 			app.ContentTypeValidatingMiddleware(
 				transport.DecodeSubscribeRequest),
 			app.EncodeResponse,
 		),
-		"POST", "/v1/subscribe",
+		router, "POST", prefix, "/v1/subscribe",
 	)
 }
