@@ -18,7 +18,7 @@ import (
 )
 
 type Service interface {
-	Subscribe(authToken string, subscription data.Subscription) error
+	Subscribe(authToken string, subscription data.CachedSubscription) error
 }
 
 type service struct {
