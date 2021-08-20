@@ -18,18 +18,18 @@ import (
 	"github.com/zerotohero-dev/fizz-store/internal/api"
 )
 
-const appName = "fizz-store"
-
 func main() {
 	e := *env.New()
 
 	appEnv := e.Store
 
-	app.Configure(e, appName, appEnv.HoneybadgerApiKey, appEnv.Sanitize)
+	svcName := appEnv.ServiceName
+
+	app.Configure(e, svcName, appEnv.HoneybadgerApiKey, appEnv.Sanitize)
 
 	r := mux.NewRouter()
 	api.InitializeEndpoints(e, r)
 	app.RouteHealthEndpoints(e.Store.PathPrefix, r)
 
-	app.ListenAndServe(e, appName, appEnv.Port, r)
+	app.ListenAndServe(e, svcName, appEnv.Port, r)
 }

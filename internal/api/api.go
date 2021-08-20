@@ -22,6 +22,12 @@ import (
 	"github.com/zerotohero-dev/fizz-store/internal/transport"
 )
 
+var urls = struct {
+	Subscribe string
+}{
+	Subscribe: "/v1/subscribe",
+}
+
 func InitializeEndpoints(e env.FizzEnv, router *mux.Router) {
 	svc := service.New(e, context.Background())
 
@@ -35,6 +41,6 @@ func InitializeEndpoints(e env.FizzEnv, router *mux.Router) {
 				transport.DecodeSubscribeRequest),
 			app.EncodeResponse,
 		),
-		router, "POST", prefix, "/v1/subscribe",
+		router, "POST", prefix, urls.Subscribe,
 	)
 }
